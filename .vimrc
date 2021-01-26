@@ -1,34 +1,51 @@
+set tabstop=2 softtabstop=2
+set shiftwidth=2 
+set expandtab
+set smartindent
+set relativenumber
+set nu
+set hidden
+set nohlsearch
+set incsearch
+set scrolloff=8
+set signcolumn=yes
+set completeopt=menuone,noinsert,noselect
+
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-easytags'
+" Plugin 'majutsushi/tagbar'
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/nerdtree'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
 
 " Plugin 'joonty/vdebug'
 
 
 " all of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()            " required
+
 filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+
+set laststatus=2
+nmap <F8> :TagbarToggle<CR>
+let mapleader = " "
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+lua require('lspconfig').tsserver.setup{ }
+syntax on
